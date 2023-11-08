@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Logo</a>
+
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <i class="fa-solid fa-xmark" id="close-icon"></i>
+        </label>
+        <nav class="my-navbar">
+            <a href="@Url.Action("Index", "Home")" style="--i:0">Home</a>
+            <a href="#" style="--i:1">Lorem</a>
+            <a href="#" style="--i:2">Ipsum</a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Login", "Home")" style="--i:3">Accedi</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Home")" style="--i:3">@((Session["Utente"] != null) ? Session["Utente"] : "Login")</a>
+            }
+            <a href="@Url.Action("Logout", "Home")" style="--i:4">Logout</a>
+            <button id="button">drop</button>
+        </nav>
+
+    </header>
+
+    @RenderBody()
+
+    <ul class="drop list" id="drop">
+        <li class="option" style="--i:5;">
+            <a href="@Url.Action("DatiPersonali", "Utente")">
+                <i class="fa-regular fa-user icon"></i>
+                <span class="option-text">Gestici account</span>
+            </a>
+        </li>
+        <li class="option" style="--i:4;">
+            <a href="@Url.Action("Storico", "Prenota")">
+                <i class="fa-regular fa-user icon"></i>
+                <span class="option-text">Prenotazioni e viaggi</span>
+            </a>
+        </li>
+        <li class="option" style="--i:3;">
+            <i class="fa-regular fa-user icon"></i>
+            <span class="option-text">Premi e Wallet</span>
+        </li>
+        <li class="option" style="--i:2;">
+            <i class="fa-regular fa-user icon"></i>
+            <span class="option-text">Recensioni</span>
+        </li>
+        <li class="option" style="--i:1;">
+            <i class="fa-regular fa-user icon"></i>
+            <span class="option-text">Preferiti</span>
+        </li>
+    </ul>
+
+
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/myScripts/dropdown.js"></script>
+    <script src="~/Scripts/myScripts/modal.js"></script>
+    <script src="https://kit.fontawesome.com/a7f72890b8.js" crossorigin="anonymous"></script>
+</body>
+</html>
+

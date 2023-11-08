@@ -1,0 +1,92 @@
+﻿@model Booking.Struttura
+
+@{
+    DateTime dataInizio = DateTime.Parse(Request.Cookies["DataInizio"].Value);
+    DateTime dataFine = DateTime.Parse(Request.Cookies["DataFine"].Value);
+}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="single_listing">
+                    @*INFO*@
+                    <div class="hotel_info">
+                        <div class="hotel_title_container d-flex flex-lg-row flex-column">
+                            <div>
+                                <h1 class="hotel_title">@Model.Nome</h1>
+                                <div class="rating_r rating_r_5 offers_rating" data-rating="5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="hotel_location">@Model.Indirizzo</div>
+                            </div>
+                            <div class="ms-lg-auto">
+                                <div class="button book_button"><a href="#">Prenota</a></div>
+                                <div class="hotel_map_link_container">
+                                    <div class="hotel_map_link">See Location on Map</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hotel-image">
+                            <img src="~/Content/img/@Model.Immagine" alt="Image not found" />
+                            <div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
+                                <div class="hotel_review">
+                                    <div class="hotel_review_content">
+                                        <div class="hotel_review_title">very good</div>
+                                        <div class="hotel_review_subtitle">100 reviews</div>
+                                    </div>
+                                    <div class="hotel_review_rating text-center">8.1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hotel_info_text">
+                            <p>@Model.Descrizione</p>
+                        </div>
+                    </div>
+                    @*STANZE*@
+                    <div class="rooms">
+                        @foreach (var camera in Model.Camera)
+                        {
+                            if (!camera.Prenotazione.Any(p => (dataInizio <= p.DataFine && dataFine >= p.DataInizio)))
+                            {
+                                <div class="room">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-2">
+                                            <div class="room_image"><img src="~/Content/img/Cover.PNG" alt="img"></div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="room_content">
+                                                <div class="room_title">@camera.Tipologia</div>
+                                                <div class="room_price">@camera.Prezzo</div>
+                                                <div class="offers_icons">
+                                                    <ul class="offers_icons_list">
+                                                        @foreach (var servizio in camera.Servizi)
+                                                        {
+                                                            @*<li class="offers_icons_item"><img src="images/post.png" alt=""></li>*@
+                                                            <li class="offers_icons_item">@servizio.TipoServizio</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="room_text">FREE cancellation before 23:59 on 20 December 2017</div>
+                                                <div class="room_extra">Breakfast $7.50</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 text-lg-right">
+                                            <div class="room_button">
+                                                <div class="button book_button trans_200">@Html.ActionLink("Prenota", "Riepilogo", "Prenota", new { id = camera.IdCamera }, null)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

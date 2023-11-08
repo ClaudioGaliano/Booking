@@ -1,0 +1,30 @@
+﻿@model Booking.Camera
+
+@{
+    DateTime dataInizio = DateTime.Parse(Request.Cookies["DataInizio"].Value);
+    DateTime dataFine = DateTime.Parse(Request.Cookies["DataFine"].Value);
+    int numeroNotti = (dataFine - dataInizio).Days;
+    decimal totale = numeroNotti * Model.Prezzo;
+}
+
+<section>
+    <h2>Riepilogo</h2>
+
+    <h2>@Model.Struttura.Nome</h2>
+    <p>@Model.Struttura.Indirizzo</p>
+    <p>@Model.Struttura.Citta</p>
+
+    <h2>Camera:</h2>
+    <p>@Model.Tipologia</p>
+    <p>@totale.ToString("C")</p>
+    <p>Durata soggiorno: @numeroNotti</p>
+    <p>Dal @dataInizio.ToShortDateString() al @dataFine.ToShortDateString()</p>
+
+
+    @using (Html.BeginForm("Prenota", "Prenota", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.IdCamera)
+
+        <input type="submit" value="Prenota" />
+    }
+</section>

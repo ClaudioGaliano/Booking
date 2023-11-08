@@ -1,0 +1,47 @@
+﻿@model List<Booking.Prenotazione>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="offers_grid">
+                    @foreach (var prenotazione in Model)
+                    {
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-lg-1 temp_col"></div>
+                            <div class="col-lg-3">
+                                <div class="img-container">
+                                    <img src="~/Content/img/@prenotazione.Camera.Struttura.Immagine" alt="immagine non trovata" class="foto-struttura" />
+                                </div>
+                            </div>
+                            <div class="col-lg-8 info-container">
+                                <div class="top">
+                                    <strong>@prenotazione.Camera.Struttura.Nome</strong>
+                                    <p>@prenotazione.DataPrenotazione.ToShortDateString()</p>
+                                </div>
+                                <p>@prenotazione.Camera.Struttura.Citta</p>
+                                <div class="button book_button">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @prenotazione.Camera.Struttura.IdStruttura }, null)</div>
+                                <div>
+                                    <button class="show-modal">Elimina</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mymodal">
+                            <span class="overlay"></span>
+                            <div class="modal-box">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <h2>Rimuovi prenotazione</h2>
+
+                                <div class="buttons">
+                                    <div class="button book_button">@Html.ActionLink("Elimina", "EliminaPrenotazione", "Prenota", new { id = @prenotazione.IdPrenotazione }, null)</div>
+                                    <button class="button close-btn mt-3">Mantieni</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

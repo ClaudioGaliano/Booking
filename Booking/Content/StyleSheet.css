@@ -9,6 +9,22 @@ section {
   margin-top: 5.6rem;
 }
 
+/*BOTTONE*/
+.mybutton {
+  display: block;
+  border-radius: 27px;
+  font-size: 13px;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 53px;
+  padding-left: 46px;
+  padding-right: 46px;
+  white-space: nowrap;
+  text-align: center;
+}
+
 /*NAVBAR*/
 .header {
   /*position: fixed;*/
@@ -266,6 +282,10 @@ section {
     flex-direction: column;
     justify-content: space-between;
 }*/
+.hotel-map-link {
+  text-align: center;
+}
+
 .temp_col {
   display: none;
 }
@@ -300,8 +320,6 @@ section {
   color: #fff;
   text-transform: uppercase;
   line-height: 53px;
-  padding-left: 46px;
-  padding-right: 46px;
   white-space: nowrap;
   text-align: center;
 }
@@ -405,6 +423,78 @@ section {
   width: 100%;
 }
 
+/*Recensioni*/
+.review {
+  margin-bottom: 91px;
+}
+
+.review_image {
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.review_image img {
+  width: 100%;
+}
+
+.review_title_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.review_text {
+  margin-top: 24px;
+}
+
+.review_title {
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  color: #2d2c2c;
+  margin-top: -3px;
+}
+
+.review_rating {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #fa9e1b;
+  padding-left: 25px;
+  padding-right: 25px;
+  line-height: 35px;
+  border-radius: 22px;
+}
+
+.review_text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  font-weight: 400;
+  color: #929191;
+}
+
+.review_name {
+  font-size: 14px;
+  font-weight: 400;
+  color: #2d2c2c;
+  margin-top: 19px;
+}
+
+.review_date {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fa9e1b;
+  margin-top: 4px;
+}
+
+.reviews_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d2c2c;
+  text-transform: uppercase;
+}
+
 /*MOODAL*/
 .mymodal {
   position: fixed;
@@ -451,10 +541,10 @@ section {
 
 .active-modal {
   /*    padding: 0;
-      border: none;
-      box-sizing: border-box;
-      outline: none;
-      overflow: auto;*/
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+  overflow: auto;*/
   visibility: visible;
   z-index: 500;
 }

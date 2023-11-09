@@ -38,6 +38,7 @@ namespace Booking.Controllers
                 TempData["RisultatiRicerca"] = struttureDisponibili;
                 Response.Cookies["DataInizio"].Value = model.DataInizio.ToString();
                 Response.Cookies["DataFine"].Value = model.DataFine.ToString();
+                Response.Cookies["Destinazione"].Value = model.Citta.ToString();
 
                 return RedirectToAction("RisultatiRicerca");
             }
@@ -45,11 +46,31 @@ namespace Booking.Controllers
         }
 
 
+        //public ActionResult RisultatiRicerca()
+        //{
+
+        //    var struttureDisponibili = TempData["RisultatiRicerca"] as List<Struttura>;
+
+        //    return View(struttureDisponibili);
+        //}
+
         public ActionResult RisultatiRicerca()
         {
             var struttureDisponibili = TempData["RisultatiRicerca"] as List<Struttura>;
+            var strutturePunteggi = new List<StrutturaPunteggi>();
 
-            return View(struttureDisponibili);
+            // Calcola il punteggio medio per ogni struttura
+            foreach (var struttura in struttureDisponibili)
+            {
+                double mediaPunteggio = db.Recensione.Where(r => r.IdStruttura == struttura.IdStruttura).Average(r => r.Punteggio);
+                strutturePunteggi.Add(new StrutturaPunteggi
+                {
+                    Struttura = struttura,
+                    MediaPunteggio = Math.Round(mediaPunteggio, 1)
+                });
+            }
+
+            return View(strutturePunteggi);
         }
 
         //public ActionResult DettaglioStruttura(int id)

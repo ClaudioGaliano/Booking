@@ -14,6 +14,7 @@ namespace Booking
         {
             Prenotazione = new HashSet<Prenotazione>();
             Recensione = new HashSet<Recensione>();
+            Preferiti = new HashSet<Preferiti>();
         }
 
         [Key]
@@ -48,5 +49,8 @@ namespace Booking
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recensione> Recensione { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Preferiti> Preferiti { get; set; }
     }
 }

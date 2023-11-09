@@ -20,7 +20,7 @@
                                     <p>@prenotazione.DataPrenotazione.ToShortDateString()</p>
                                 </div>
                                 <p>@prenotazione.Camera.Struttura.Citta</p>
-                                <div class="button book_button">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @prenotazione.Camera.Struttura.IdStruttura }, null)</div>
+                                <div class="button book_button">@Html.ActionLink("Lascia recensione", "Recensione", "Recensione", new { id = @prenotazione.Camera.Struttura.IdStruttura }, null)</div>
                                 <div>
                                     <button class="show-modal">Elimina</button>
                                 </div>

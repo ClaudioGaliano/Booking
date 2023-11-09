@@ -1,20 +1,20 @@
-﻿@model IEnumerable<Booking.StrutturaPunteggi>
+﻿@model IEnumerable<Booking.Preferiti>
 
 <section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="offers_grid">
-                    @foreach (StrutturaPunteggi strutturaPunteggi in Model)
+                    @foreach (Preferiti preferito in Model)
                     {
                         <div class="row justify-content-center mt-5">
                             <div class="col-lg-1 temp_col"></div>
                             <div class="col-lg-3">
                                 <div class="img-container">
                                     <div class="hotel-label">
-                                        <a href="#">@strutturaPunteggi.Struttura.Nome</a>
+                                        <a href="#">@preferito.Struttura.Nome</a>
                                     </div>
-                                    <img src="~/Content/img/@strutturaPunteggi.Struttura.Immagine" alt="immagine non trovata" class="foto-struttura" />
+                                    <img src="~/Content/img/@preferito.Struttura.Immagine" alt="immagine non trovata" class="foto-struttura" />
                                 </div>
                             </div>
                             <div class="col-lg-8 info-container">
@@ -27,7 +27,7 @@
                                                     <div class="offer_reviews_title">very good</div>
                                                     <div class="offer_reviews_subtitle">100 reviews</div>
                                                 </div>
-                                                <div class="offer_reviews_rating text-center">@strutturaPunteggi.MediaPunteggio</div>
+                                                <div class="offer_reviews_rating text-center">8.1</div>
                                             </div>
                                         </div>
                                         <div class="rating_r rating_r_5 offers_rating" data-rating="5">
@@ -39,7 +39,7 @@
                                         </div>
                                         <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet.</p>
                                     </div>
-                                    <div class="button book_button">@Html.ActionLink("Prenota", "DettaglioStruttura", "Struttura", new { id = @strutturaPunteggi.Struttura.IdStruttura }, null)</div>
+                                    <div class="button book_button">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @preferito.Struttura.IdStruttura }, null)</div>
                                 </div>
                             </div>
                         </div>

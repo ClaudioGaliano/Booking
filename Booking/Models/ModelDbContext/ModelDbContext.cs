@@ -18,6 +18,7 @@ namespace Booking
         public virtual DbSet<Servizi> Servizi { get; set; }
         public virtual DbSet<Struttura> Struttura { get; set; }
         public virtual DbSet<Utente> Utente { get; set; }
+        public virtual DbSet<Preferiti> Preferiti { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

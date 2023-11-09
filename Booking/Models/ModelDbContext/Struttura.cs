@@ -22,7 +22,7 @@ namespace Booking
         [StringLength(30)]
         public string Nome { get; set; }
 
-        [StringLength(30)]
+        [Column(TypeName = "nvarchar(MAX)")]
         public string Descrizione { get; set; }
 
         [Required]
@@ -38,5 +38,8 @@ namespace Booking
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Camera> Camera { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Recensione> Recensioni { get; set; }
     }
 }

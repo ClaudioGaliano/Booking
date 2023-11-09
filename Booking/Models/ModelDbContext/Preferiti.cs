@@ -1,6 +1,4 @@
-using Booking;
-
-namespace Booking
+﻿namespace Booking
 {
     using System;
     using System.Collections.Generic;
@@ -8,19 +6,16 @@ namespace Booking
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Recensione")]
-    public partial class Recensione
+    [Table("Preferiti")]
+    public partial class Preferiti
     {
         [Key]
-        public int IdRecensione { get; set; }
-
-        public int Punteggio { get; set; }
+        public int IdPreferito { get; set; }
 
         [Required]
-        public string Commento { get; set; }
+        public int IdUtente { get; set; }
 
-        public int IdUtenteFk { get; set; }
-
+        [Required]
         public int IdStruttura { get; set; }
 
         public virtual Utente Utente { get; set; }

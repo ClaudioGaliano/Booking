@@ -13,12 +13,12 @@ namespace Booking
         }
 
         public virtual DbSet<Camera> Camera { get; set; }
+        public virtual DbSet<Preferiti> Preferiti { get; set; }
         public virtual DbSet<Prenotazione> Prenotazione { get; set; }
         public virtual DbSet<Recensione> Recensione { get; set; }
         public virtual DbSet<Servizi> Servizi { get; set; }
         public virtual DbSet<Struttura> Struttura { get; set; }
         public virtual DbSet<Utente> Utente { get; set; }
-        public virtual DbSet<Preferiti> Preferiti { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +36,10 @@ namespace Booking
                 .HasMany(e => e.Servizi)
                 .WithMany(e => e.Camera)
                 .Map(m => m.ToTable("Camere_Servizi").MapLeftKey("IdCameraFk").MapRightKey("IdServizioFk"));
+
+            modelBuilder.Entity<Prenotazione>()
+                .Property(e => e.Totale)
+                .HasPrecision(19, 4);
 
             modelBuilder.Entity<Struttura>()
                 .HasMany(e => e.Camera)

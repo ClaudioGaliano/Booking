@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booking.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,10 +31,10 @@ namespace Booking.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login([Bind(Include = "Username,Password")] Utente utente)
+        public ActionResult Login([Bind(Include = "Username,Password")] Registrazione utente)
         {
-            var user = db.Utente.FirstOrDefault(u => u.Username == utente.Username && u.Password == utente.Password);
-            if (user != null)
+            var user = db.Utente.FirstOrDefault(u => u.Username == utente.Username);
+            if (user != null && user.CheckPassword(utente.Password))
             {
                 Session["IdUtente"] = user.IdUtente;
                 Session["Ruolo"] = user.Ruolo;

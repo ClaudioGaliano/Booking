@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace Booking.Models
+namespace Booking
 {
     public class RoleManager : RoleProvider
     {

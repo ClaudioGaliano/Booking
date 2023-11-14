@@ -21,12 +21,12 @@ namespace Booking
         [Column(TypeName = "date")]
         public DateTime DataFine { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal Totale { get; set; }
-
         public int IdUtenteFk { get; set; }
 
         public int IdCameraFk { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal Totale { get; set; }
 
         public virtual Camera Camera { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace Booking
+namespace Booking
 {
     using System;
     using System.Collections.Generic;
@@ -12,14 +12,12 @@
         [Key]
         public int IdPreferito { get; set; }
 
-        [Required]
         public int IdUtente { get; set; }
 
-        [Required]
         public int IdStruttura { get; set; }
 
-        public virtual Utente Utente { get; set; }
-
         public virtual Struttura Struttura { get; set; }
+
+        public virtual Utente Utente { get; set; }
     }
 }

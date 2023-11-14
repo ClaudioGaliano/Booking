@@ -1,8 +1,14 @@
-﻿using System;
+﻿using Booking.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +17,39 @@ namespace Booking.Controllers
     public class UtenteController : Controller
     {
         ModelDbContext db = new ModelDbContext();
+
+        [HttpGet]
+        public ActionResult Registrati()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Registrati(Registrazione model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new Utente
+                {
+                    Cognome = model.Cognome,
+                    Nome = model.Nome,
+                    Email = model.Email,
+                    Username = model.Username,
+                    Ruolo = "User"
+                };
+
+                user.SetPassword(model.Password);
+
+                db.Utente.Add(user);
+                await db.SaveChangesAsync();
+
+                // User created successfully, redirect to login page, etc.
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
 
         public ActionResult DatiPersonali()
         {

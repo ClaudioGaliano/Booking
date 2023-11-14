@@ -13,6 +13,8 @@ namespace Booking
         public Struttura()
         {
             Camera = new HashSet<Camera>();
+            Preferiti = new HashSet<Preferiti>();
+            Recensione = new HashSet<Recensione>();
         }
 
         [Key]
@@ -22,7 +24,6 @@ namespace Booking
         [StringLength(30)]
         public string Nome { get; set; }
 
-        [Column(TypeName = "nvarchar(MAX)")]
         public string Descrizione { get; set; }
 
         [Required]
@@ -40,6 +41,9 @@ namespace Booking
         public virtual ICollection<Camera> Camera { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Recensione> Recensioni { get; set; }
+        public virtual ICollection<Preferiti> Preferiti { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Recensione> Recensione { get; set; }
     }
 }

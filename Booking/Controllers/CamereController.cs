@@ -1,4 +1,4 @@
-﻿using Booking.Models;
+﻿using Booking;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -62,11 +62,12 @@ namespace Booking.Controllers
             // Calcola il punteggio medio per ogni struttura
             foreach (var struttura in struttureDisponibili)
             {
-                double mediaPunteggio = db.Recensione.Where(r => r.IdStruttura == struttura.IdStruttura).Average(r => r.Punteggio);
+                var recensioni = db.Recensione.Where(r => r.IdStruttura == struttura.IdStruttura);
+                double? mediaPunteggio = recensioni.Any() ? recensioni.Average(r => r.Punteggio) : 0;
                 strutturePunteggi.Add(new StrutturaPunteggi
                 {
                     Struttura = struttura,
-                    MediaPunteggio = Math.Round(mediaPunteggio, 1)
+                    MediaPunteggio = mediaPunteggio.HasValue ? Math.Round(mediaPunteggio.Value, 1) : (double?)null
                 });
             }
 

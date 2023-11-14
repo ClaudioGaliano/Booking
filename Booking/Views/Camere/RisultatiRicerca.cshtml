@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Booking.StrutturaPunteggi>
 
+@{ Html.RenderAction("Camere", "Home"); }
+
 <section>
     <div class="container">
         <div class="row">
@@ -27,7 +29,16 @@
                                                     <div class="offer_reviews_title">very good</div>
                                                     <div class="offer_reviews_subtitle">100 reviews</div>
                                                 </div>
-                                                <div class="offer_reviews_rating text-center">@strutturaPunteggi.MediaPunteggio</div>
+                                                <div class="offer_reviews_rating text-center">
+                                                    @if (strutturaPunteggi.MediaPunteggio > 0)
+                                                    {
+                                                        @strutturaPunteggi.MediaPunteggio.Value
+                                                    }
+                                                    else
+                                                    {
+                                                        @:-
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="rating_r rating_r_5 offers_rating" data-rating="5">

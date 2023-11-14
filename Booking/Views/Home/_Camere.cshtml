@@ -1,4 +1,4 @@
-﻿@model Booking.Models.RicercaCamere
+﻿@model Booking.RicercaCamere
 
 @{
     // Recupera i valori dei cookie
@@ -11,40 +11,43 @@
     DateTime? dataFineDate = string.IsNullOrEmpty(dataFine) ? (DateTime?)null : DateTime.Parse(dataFine);
 }
 
+<div class="search">
+    <div class="container fill_height">
+        <div class="row fill_height">
+            <div class="col fill_height">
+                @using (Html.BeginForm("RicercaCamere", "Camere", FormMethod.Post, new { @class = "search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="search_item">
+                        <div>destination</div>
+                        @Html.EditorFor(model => model.Citta, new { htmlAttributes = new { @class = "destination search_input", Value = destinazione } })
+                        @*@Html.ValidationMessageFor(model => model.Citta, "", new { @class = "text-danger" })*@
+                    </div>
 
-@using (Html.BeginForm("RicercaCamere", "Camere", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+                    <div class="search_item">
+                        <div>check in</div>
+                        @Html.TextBoxFor(model => model.DataInizio, "{0:yyyy-MM-dd}", new { @class = "check_in search_input", type = "date", Value = dataInizioDate?.ToString("yyyy-MM-dd") })
+                        @*@Html.ValidationMessageFor(model => model.DataInizio, "", new { @class = "text-danger" })*@
+                    </div>
 
-    <div class="form-horizontal search">
-        <h4>RicercaCamere</h4>
+                    <div class="search_item">
+                        <div>check out</div>
+                        @Html.TextBoxFor(model => model.DataFine, "{0:yyyy-MM-dd}", new { @class = "check_out search_input", type = "date", Value = dataFineDate?.ToString("yyyy-MM-dd") })
+                        @*@Html.ValidationMessageFor(model => model.DataFine, "", new { @class = "text-danger" })*@
+                    </div>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Citta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Citta, new { htmlAttributes = new { @class = "form-control", Value = destinazione } })
-                @Html.ValidationMessageFor(model => model.Citta, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="search_item">
+                        <div>adults</div>
+                        <select name="adults" id="adults_1" class="dropdown_item_select search_input">
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                        </select>
+                    </div>
 
-        <div class="form-group">
-            <label for="DataInizio" class="label-form">@Html.Raw("<strong>Data inizio</strong>")</label>
-            @Html.TextBoxFor(model => model.DataInizio, "{0:yyyy-MM-dd}", new { type = "date", Value = dataInizioDate?.ToString("yyyy-MM-dd") })
-            @Html.ValidationMessageFor(model => model.DataInizio, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <label for="DataFine" class="label-form">@Html.Raw("<strong>Data fine</strong>")</label>
-            @Html.TextBoxFor(model => model.DataFine, "{0:yyyy-MM-dd}", new { type = "date", Value = dataFineDate?.ToString("yyyy-MM-dd") })
-            @Html.ValidationMessageFor(model => model.DataFine, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cerca" class="btn btn-primary" />
+                    <input type="submit" value="Cerca" class="button search_button" />
+                }
             </div>
         </div>
     </div>
-}
-
+</div>

@@ -1,5 +1,3 @@
-using Booking;
-
 namespace Booking
 {
     using System;
@@ -17,14 +15,18 @@ namespace Booking
         public int Punteggio { get; set; }
 
         [Required]
+        [StringLength(30)]
+        public string Titolo { get; set; }
+
+        [Required]
         public string Commento { get; set; }
 
         public int IdUtenteFk { get; set; }
 
         public int IdStruttura { get; set; }
 
-        public virtual Utente Utente { get; set; }
-
         public virtual Struttura Struttura { get; set; }
+
+        public virtual Utente Utente { get; set; }
     }
 }

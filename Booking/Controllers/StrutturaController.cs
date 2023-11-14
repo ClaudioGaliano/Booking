@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booking;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -19,16 +20,19 @@ namespace Booking.Controllers
 
         public ActionResult DettaglioStruttura(int id)
         {
-            double mediaPunteggio = db.Recensione.Where(c => c.IdStruttura == id).Average(c => c.Punteggio);
-            mediaPunteggio = Math.Round(mediaPunteggio, 1);
+            var recensioni = db.Recensione.Where(c => c.IdStruttura == id);
+            double? mediaPunteggio = recensioni.Any() ? recensioni.Average(r => r.Punteggio) : 0;
+
+            mediaPunteggio = Math.Round((double)mediaPunteggio, 1);
             ViewBag.MediaPunteggio = mediaPunteggio;
 
-            double numeroRecensioni = db.Recensione.Where(c => c.IdStruttura == id).Count();;
+
+            double numeroRecensioni = db.Recensione.Where(c => c.IdStruttura == id).Count(); ;
             ViewBag.NumeroRecensioni = numeroRecensioni;
 
             var struttura = db.Struttura
                 .Include(s => s.Camera.Select(c => c.Servizi))
-                .Include(s => s.Recensioni)
+                .Include(s => s.Recensione)
                 .FirstOrDefault(s => s.IdStruttura == id);
 
             if (Session["IdUtente"] != null)

@@ -26,10 +26,10 @@ namespace Booking
         [Column(TypeName = "money")]
         public decimal Prezzo { get; set; }
 
+        public int IdStrutturaFk { get; set; }
+
         [StringLength(30)]
         public string Immagine { get; set; }
-
-        public int IdStrutturaFk { get; set; }
 
         public virtual Struttura Struttura { get; set; }
 

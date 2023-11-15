@@ -74,7 +74,7 @@ namespace Booking.Controllers
 
                         try
                         {
-                            MailProPack();
+                            Mail();
                             TempData["Successo"] = "Richiesta inviata con successo. Entro 48h verrai ricontattato per approfondimenti sul tuo progetto";
                         }
                         catch (Exception ex)
@@ -89,7 +89,7 @@ namespace Booking.Controllers
             return View();
         }
 
-        public void MailProPack()
+        public void Mail()
         {
             //var utente = db.Utente.FirstOrDefault(x => x.Username == User.Identity.Name);
             string senderEmail = ConfigurationManager.AppSettings["SmtpSenderEmail"];
@@ -107,8 +107,8 @@ namespace Booking.Controllers
 
             var mailMessage = new MailMessage()
             {
-                From = new MailAddress(senderEmail, "Paolo Manca Consulting"),
-                Subject = "Richiesta Pacchetto Pro",
+                From = new MailAddress(senderEmail, "Nome azienda"),
+                Subject = "Test",
                 Body = @"
                 <section class=""max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900"">
                     <main class=""mt-8"">

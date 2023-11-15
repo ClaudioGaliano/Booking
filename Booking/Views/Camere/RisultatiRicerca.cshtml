@@ -1,10 +1,70 @@
 ﻿@model IEnumerable<Booking.StrutturaPunteggi>
 
+<div class="offer_hero">
+    <div class="offer_content">
+        <div class="offer_title">our offers</div>
+    </div>
+    <div class="home_slider_container"></div>
+</div>
+
 @{ Html.RenderAction("Camere", "Home"); }
 
-<section>
+<section class="offer_section">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+                @*filtri*@
+                <div class="offers_sorting_container">
+                    <ul class="offers_sorting">
+                        <li>
+                            <span class="sorting_text">price</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="sort_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;original-order&quot; }" data-parent=".price_sorting"><span>show all</span></li>
+                                <li class="sort_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;price&quot; }" data-parent=".price_sorting"><span>ascending</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">location</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="sort_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;original-order&quot; }"><span>default</span></li>
+                                <li class="sort_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;name&quot; }"><span>alphabetical</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">stars</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="filter_btn" data-filter="*"><span>show all</span></li>
+                                <li class="sort_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;stars&quot; }"><span>ascending</span></li>
+                                <li class="filter_btn" data-filter=".rating_3"><span>3</span></li>
+                                <li class="filter_btn" data-filter=".rating_4"><span>4</span></li>
+                                <li class="filter_btn" data-filter=".rating_5"><span>5</span></li>
+                            </ul>
+                        </li>
+                        <li class="distance_item">
+                            <span class="sorting_text">distance from center</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">reviews</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @*filtri*@
             <div class="col-lg-12">
                 <div class="offers_grid">
                     @foreach (StrutturaPunteggi strutturaPunteggi in Model)

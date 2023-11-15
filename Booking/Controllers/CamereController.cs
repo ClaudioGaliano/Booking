@@ -45,15 +45,6 @@ namespace Booking.Controllers
             return View(model);
         }
 
-
-        //public ActionResult RisultatiRicerca()
-        //{
-
-        //    var struttureDisponibili = TempData["RisultatiRicerca"] as List<Struttura>;
-
-        //    return View(struttureDisponibili);
-        //}
-
         public ActionResult RisultatiRicerca()
         {
             var struttureDisponibili = TempData["RisultatiRicerca"] as List<Struttura>;
@@ -73,14 +64,5 @@ namespace Booking.Controllers
 
             return View(strutturePunteggi);
         }
-
-        //public ActionResult DettaglioStruttura(int id)
-        //{
-        //    var struttura = db.Struttura
-        //        .Include(s => s.Camera.Select(c => c.Servizi))
-        //        .FirstOrDefault(s => s.IdStruttura == id);
-
-        //    return View(struttura);
-        //}
     }
 }

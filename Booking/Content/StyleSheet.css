@@ -960,6 +960,10 @@ section {
 }
 
 /*STRUTTURA*/
+.hotel_section {
+  margin-top: 0;
+}
+
 .single_listing {
   width: 100%;
   padding-top: 100px;
@@ -1020,6 +1024,13 @@ section {
   text-transform: uppercase;
 }
 
+.hotel_preferito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .hotel_review_subtitle {
   font-size: 12px;
   font-weight: 600;
@@ -1060,9 +1071,38 @@ section {
   width: 100%;
 }
 
+.room_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d2c2c;
+  margin-top: -5px;
+}
+
+.room_price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #929191;
+  margin-top: 9px;
+}
+
+.room_text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fa9e1b;
+  margin-top: 6px;
+}
+
+.room_extra {
+  font-size: 14px;
+  font-weight: 400;
+  color: #2d2c2c;
+  margin-top: 5px;
+}
+
 /*Recensioni*/
-.review {
-  margin-bottom: 91px;
+.reviews {
+  margin-bottom: 90px;
+  margin-top: 90px;
 }
 
 .review_image {
@@ -1072,6 +1112,10 @@ section {
 }
 .review_image img {
   width: 100%;
+}
+
+.reviews_container {
+  margin-top: 60px;
 }
 
 .review_title_container {
@@ -1590,10 +1634,6 @@ body {
   border: solid 1px #fa9e1b;
   border-radius: 50%;
   text-align: center;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
   transition: all 200ms ease;
   margin-right: 9px;
 }
@@ -1614,16 +1654,8 @@ body {
   position: relative;
   color: #FFFFFF;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 12px;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
 
@@ -1699,10 +1731,6 @@ body {
   margin-right: 9px;
   margin-bottom: 9px;
   border: solid 1px #fa9e1b;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
 
@@ -1790,10 +1818,6 @@ body {
   color: #685677;
   text-transform: uppercase;
   line-height: 2;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
 

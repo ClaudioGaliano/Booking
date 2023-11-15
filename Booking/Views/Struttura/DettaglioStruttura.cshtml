@@ -30,7 +30,7 @@
 
 @{ Html.RenderAction("Camere", "Home"); }
 
-<section>
+<section class="hotel_section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="hotel_location">@Model.Indirizzo, @Model.Citta</div>
                             </div>
-                            <div class="ms-lg-auto">
+                            <div class="ms-lg-auto hotel_preferito">
                                 @if (ViewBag.IsPreferito != null && ViewBag.IsPreferito)
                                 {
                                     <button class="mybutton book_button trans_200 preferito" data-idstruttura="@Model.IdStruttura">Rimuovi dai preferiti</button>
@@ -95,7 +95,7 @@
                                         <div class="col-lg-7">
                                             <div class="room_content">
                                                 <div class="room_title">@camera.Tipologia</div>
-                                                <div class="room_price">@camera.Prezzo</div>
+                                                <div class="room_price">@camera.Prezzo.ToString("C2")/notte</div>
                                                 <div class="offers_icons">
                                                     <ul class="offers_icons_list">
                                                         @foreach (var servizio in camera.Servizi)
@@ -119,33 +119,35 @@
                             }
                         }
                     </div>
-                    <div class="review">
+                    <div class="reviews">
                         <h3 class="reviews_title">Recensioni</h3>
-                        @foreach (Recensione recensione in Model.Recensione.Take(3))
-                        {
-                            <div class="row mt-4">
-                                <div class="col-lg-1">
-                                    <div class="review_image">
-                                        <img src="~/Content/img/Cover.PNG" alt="" />
+                        <div class="reviews_container">
+                            @foreach (Recensione recensione in Model.Recensione.Take(3))
+                            {
+                                <div class="review row mt-4">
+                                    <div class="col-lg-1">
+                                        <div class="review_image">
+                                            <img src="~/Content/img/Cover.PNG" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-11">
+                                        <div class="review_content">
+                                            <div class="review_title_container">
+                                                <div class="review_title">"@recensione.Titolo"</div>
+                                                <div class="review_rating">@recensione.Punteggio</div>
+                                            </div>
+                                            <div class="review_text">
+                                                <p class="review_text">@recensione.Commento</p>
+                                            </div>
+                                            <div class="review_name">@recensione.Utente.Nome @recensione.Utente.Cognome</div>
+                                            <div class="review_date">12 November 2017</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-11">
-                                    <div class="review_content">
-                                        <div class="review_title_container">
-                                            <div class="review_title">"@recensione.Titolo"</div>
-                                            <div class="review_rating">@recensione.Punteggio</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p class="review_text">@recensione.Commento</p>
-                                        </div>
-                                        <div class="review_name">@recensione.Utente.Nome @recensione.Utente.Cognome</div>
-                                        <div class="review_date">12 November 2017</div>
-                                    </div>
-                                </div>
+                            }
+                            <div class="room_button">
+                                <div class="button book_button trans_200">@Html.ActionLink("Tutte le recensioni", "Recensioni", "Recensione", new { id = Model.IdStruttura }, null)</div>
                             </div>
-                        }
-                        <div class="room_button">
-                            <div class="button book_button trans_200">@Html.ActionLink("Tutte le recensioni", "Recensioni", "Recensione", new { id = Model.IdStruttura }, null)</div>
                         </div>
                     </div>
                 </div>

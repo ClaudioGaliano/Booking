@@ -1,4 +1,5 @@
 ﻿using Booking.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,11 @@ namespace Booking.Controllers
             return RedirectToAction("Recensione");
         }
 
-        public ActionResult Recensioni(int id)
+        public ActionResult Recensioni(int id, int? page)
         {
-            List<Recensione> recensioni = db.Recensione.Where(a => a.IdStruttura == id).ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            IPagedList<Recensione> recensioni = db.Recensione.Where(a => a.IdStruttura == id).OrderByDescending(r => r.Data).ToPagedList(pageNumber, pageSize);
             return View(recensioni);
         }
     }

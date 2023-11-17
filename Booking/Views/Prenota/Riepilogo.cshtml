@@ -7,24 +7,64 @@
     decimal totale = numeroNotti * Model.Prezzo;
 }
 
-<section>
-    <h2>Riepilogo</h2>
+<section class="receipt_section">
+        <div class="container d-flex justify-content-center">
+            <div class="model">
+                <div class="receipt_room">
+                    <div class="text-cover">
+                        <h1>@Model.Struttura.Nome</h1>
+                        <p class="price"><span>@Model.Prezzo.ToString("C2")</span> / Notte</p>
+                        <hr>
+                        <p>Durata soggiorno: @numeroNotti</p>
+                        <p>Dal @dataInizio.ToShortDateString() al @dataFine.ToShortDateString()</p>
+                        @*<p>Entire Home for 1 guest</p>*@
+                        @*<p>Tues, Oct 2, 2017 to Friday, Oct 5, 2017</p>*@
+                    </div>
+                </div><div class="payment">
+                    <div class="receipt-box">
+                        <h3>Riepilogo</h3>
+                        <table class="table">
+                            <tr>
+                                <td>@Model.Prezzo.ToString("C2") x @numeroNotti notti</td>
+                                <td>@totale.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td>Sconto</td>
+                                <td>0 EUR</td>
+                            </tr>
+                            @*<tr>
+                                <td>Totale</td>
+                                <td>@totale.ToString("C")</td>
+                            </tr>*@
+                            @*<tr>
+                                <td>Tax</td>
+                                <td>10 USD</td>
+                            </tr>*@
+                            <tfoot>
+                                <tr>
+                                    <td class="highlight">Totale</td>
+                                    <td class="highlight">@totale.ToString("C")</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="payment-info">
+                        <h3>Payment Info</h3>
+                        <form>
+                            <label>Nome</label>
+                            <input type="text" name="firstname" value="@(ViewBag.nomeUtente != null ? ViewBag.nomeUtente : "")">
+                            <label>Cognome</label>
+                            <input type="text" name="lastname" value="@(@ViewBag.cognomeUtente != null ? ViewBag.cognomeUtente : "")">
+                            <br><br>
+                        </form>
+                        @using (Html.BeginForm("Prenota", "Prenota", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(model => model.IdCamera)
 
-    <h2>@Model.Struttura.Nome</h2>
-    <p>@Model.Struttura.Indirizzo</p>
-    <p>@Model.Struttura.Citta</p>
-
-    <h2>Camera:</h2>
-    <p>@Model.Tipologia</p>
-    <p>@totale.ToString("C")</p>
-    <p>Durata soggiorno: @numeroNotti</p>
-    <p>Dal @dataInizio.ToShortDateString() al @dataFine.ToShortDateString()</p>
-
-
-    @using (Html.BeginForm("Prenota", "Prenota", FormMethod.Post))
-    {
-        @Html.HiddenFor(model => model.IdCamera)
-
-        <input type="submit" value="Prenota" />
-    }
+                            <input type="submit" value="Prenota" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>

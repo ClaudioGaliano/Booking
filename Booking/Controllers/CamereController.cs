@@ -55,10 +55,12 @@ namespace Booking.Controllers
             {
                 var recensioni = db.Recensione.Where(r => r.IdStruttura == struttura.IdStruttura);
                 double? mediaPunteggio = recensioni.Any() ? recensioni.Average(r => r.Punteggio) : 0;
+                double? numeroRecensioni = db.Recensione.Where(c => c.IdStruttura == struttura.IdStruttura).Count(); ;
                 strutturePunteggi.Add(new StrutturaPunteggi
                 {
                     Struttura = struttura,
-                    MediaPunteggio = mediaPunteggio.HasValue ? Math.Round(mediaPunteggio.Value, 1) : (double?)null
+                    MediaPunteggio = mediaPunteggio.HasValue ? Math.Round(mediaPunteggio.Value, 1) : (double?)null,
+                    TotaleRecensioni = numeroRecensioni
                 });
             }
 

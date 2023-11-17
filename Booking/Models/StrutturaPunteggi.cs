@@ -10,5 +10,6 @@
     {
         public Struttura Struttura { get; set; }
         public double? MediaPunteggio { get; set; }
+        public double? TotaleRecensioni { get; set; }
     }
 }

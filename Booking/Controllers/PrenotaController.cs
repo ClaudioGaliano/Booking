@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Booking.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Booking.Controllers
 {
@@ -23,6 +24,13 @@ namespace Booking.Controllers
         [HttpGet]
         public ActionResult Riepilogo(int id)
         {
+            if (Session["IdUtente"] != null && Int16.TryParse(Session["IdUtente"].ToString(), out short idUtente))
+            {
+               var utente = db.Utente.Find(idUtente);
+               ViewBag.nomeUtente = utente.Nome;
+               ViewBag.cognomeUtente = utente.Cognome;
+            }
+            
             var camera = db.Camera.Find(id);
             return View(camera);
         }
@@ -68,6 +76,7 @@ namespace Booking.Controllers
                         prenotazione.DataFine = dataFine;
                         prenotazione.IdUtenteFk = id;
                         prenotazione.IdCameraFk = IdCamera;
+                        prenotazione.Totale = calcolaTotale(IdCamera, dataInizio, dataFine);
 
                         db.Prenotazione.Add(prenotazione);
                         db.SaveChanges();
@@ -75,7 +84,7 @@ namespace Booking.Controllers
                         try
                         {
                             Mail();
-                            TempData["Successo"] = "Richiesta inviata con successo. Entro 48h verrai ricontattato per approfondimenti sul tuo progetto";
+                            TempData["Successo"] = "";
                         }
                         catch (Exception ex)
                         {
@@ -87,6 +96,14 @@ namespace Booking.Controllers
                 }
             }
             return View();
+        }
+
+        public decimal calcolaTotale (int idCamera, DateTime dataInizio, DateTime dataFine)
+        {
+            Camera camera = db.Camera.Find(idCamera);
+            int numeroNotti = (dataFine - dataInizio).Days;
+            decimal totale = (numeroNotti * camera.Prezzo);
+            return totale;
         }
 
         public void Mail()

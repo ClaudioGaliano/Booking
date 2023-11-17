@@ -39,6 +39,7 @@ namespace Booking.Controllers
                 Session["IdUtente"] = user.IdUtente;
                 Session["Ruolo"] = user.Ruolo;
                 Session["Utente"] = user.Nome + " " + user.Cognome;
+                Session["Iniziali"] = user.Nome.Substring(0, 1) + user.Cognome.Substring(0, 1);
                 FormsAuthentication.SetAuthCookie(user.Username, true);
                 return RedirectToAction("Index");
             }

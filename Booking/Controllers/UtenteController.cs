@@ -1,4 +1,4 @@
-﻿using Booking.Models;
+﻿using Booking;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

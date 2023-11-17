@@ -140,13 +140,13 @@
                                                 <p class="review_text">@recensione.Commento</p>
                                             </div>
                                             <div class="review_name">@recensione.Utente.Nome @recensione.Utente.Cognome</div>
-                                            <div class="review_date">12 November 2017</div>
+                                            <div class="review_date">@recensione.Data.ToString("dd MMMM yyyy")</div>
                                         </div>
                                     </div>
                                 </div>
                             }
-                            <div class="room_button">
-                                <div class="button book_button trans_200">@Html.ActionLink("Tutte le recensioni", "Recensioni", "Recensione", new { id = Model.IdStruttura }, null)</div>
+                            <div class="review mt-5">
+                                <div class="rw_button"><div class="button_bcg"></div>@Html.ActionLink("Tutte le recensioni", "Recensioni", "Recensione", new { id = Model.IdStruttura }, null)</div>
                             </div>
                         </div>
                     </div>

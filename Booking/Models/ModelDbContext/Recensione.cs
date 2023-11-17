@@ -21,6 +21,10 @@ namespace Booking
         [Required]
         public string Commento { get; set; }
 
+        [Required]
+        [Column(TypeName = "date")]
+        public DateTime Data { get; set; }
+
         public int IdUtenteFk { get; set; }
 
         public int IdStruttura { get; set; }

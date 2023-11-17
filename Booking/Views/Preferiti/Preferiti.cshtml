@@ -1,51 +1,67 @@
 ﻿@model IEnumerable<Booking.Preferiti>
 
-<section>
+<div class="offer_hero">
+    <div class="offer_content">
+        <div class="offer_title">Favourites</div>
+    </div>
+    <div class="home_slider_container"></div>
+</div>
+
+
+<section class="fv_section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="offers_grid">
-                    @foreach (var preferito in Model)
-                    {
-                        <div class="row justify-content-center mt-5">
-                            <div class="col-lg-1 temp_col"></div>
-                            <div class="col-lg-3">
-                                <div class="img-container">
-                                    <div class="hotel-label">
-                                        <a href="#">@preferito.Struttura.Nome</a>
+        @if (Model.Any())
+        {
+            <div class="row">
+                        @foreach (var preferito in Model)
+                        {
+                            <div class="fav_card col-lg-4 col-md-6 ol-sm-12 justify-content-center mt-4">
+                                <div class="col-lg-12">
+                                    <div class="img-container">
+                                        <div class="hotel-label">
+                                            <a href="#">@preferito.Struttura.Nome</a>
+                                        </div>
+                                        <img src="/Content/img/Cover.PNG" alt="immagine non trovata" class="foto-struttura">
                                     </div>
-                                    <img src="~/Content/img/@preferito.Struttura.Immagine" alt="immagine non trovata" class="foto-struttura" />
                                 </div>
-                            </div>
-                            <div class="col-lg-8 info-container">
-                                <div class="aaa">
+                                <div class="col-lg-12 info-container">
                                     <div>
-                                        <div class="top">
-                                            <p class="prezzo">100$</p>
-                                            <div class="offer_reviews">
-                                                <div class="offer_reviews_content">
-                                                    <div class="offer_reviews_title">very good</div>
-                                                    <div class="offer_reviews_subtitle">100 reviews</div>
+                                        <div>
+                                            <div class="top">
+                                                <p class="prezzo">@preferito.Struttura.Citta</p>
+                                                <div class="offer_reviews">
+                                                    <div class="offer_reviews_content">
+                                                        <div class="offer_reviews_title">very good</div>
+                                                        <div class="offer_reviews_subtitle">100 reviews</div>
+                                                    </div>
+                                                    <div class="offer_reviews_rating text-center">8.1</div>
                                                 </div>
-                                                <div class="offer_reviews_rating text-center">8.1</div>
+                                            </div>
+                                            <div class="rating_r rating_r_5 offers_rating" data-rating="5">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
                                             </div>
                                         </div>
-                                        <div class="rating_r rating_r_5 offers_rating" data-rating="5">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet.</p>
+                                        <div class="button book_button mt-3">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @preferito.IdStruttura }, null)</div>
                                     </div>
-                                    <div class="button book_button">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @preferito.Struttura.IdStruttura }, null)</div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                </div>
+                        }
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="empty_list">
+                <h2>Ecco 3 semplici passi per iniziare:</h2>
+                <ul class="fv_list">
+                    <li>1. Cerca una struttura dove soggiornare</li>
+                    <li>2. Quando ne trovi una che ti piace, aggiungila ai preferiti</li>
+                    <li>3. Qui troverai tutto quello che hai salvato</li>
+                </ul>
+            </div>
+        }
     </div>
 </section>

@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <div class="d-flex align-items-end">
-            <img src="~/Content/img/logo.png" alt="" style="height: 60px;">
+            <img src="~/Content/img/logo.png" alt="" class="logo_nav">
             <div class="logotipo">Travel</div>
         </div>
 
@@ -24,8 +24,9 @@
         </label>
         <nav class="my-navbar">
             <a href="@Url.Action("Index", "Home")" style="--i:0">Home</a>
-            <a href="@Url.Action("Registrati", "Utente")" style="--i:1">Registrati</a>
-            <a href="#" style="--i:2">Ipsum</a>
+            @*<a href="@Url.Action("Registrati", "Utente")" style="--i:1">Registrati</a>*@
+            <a href="#" style="--i:1">Notifiche</a>
+            <a href="#" style="--i:2">Assistenza</a>
 
             @if (!User.Identity.IsAuthenticated)
             {
@@ -34,48 +35,56 @@
             else
             {
                 @*<a href="@Url.Action("Login", "Home")" style="--i:3">@((Session["Utente"] != null) ? Session["Utente"] : "Login")</a>*@
-                <a href="#" style="--i:3">@Session["Utente"]</a>
-            }
-
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a href="@Url.Action("Logout", "Home")" style="--i:4">Logout</a>
+                @*<a href="#" style="--i:3">@Session["Utente"]</a>*@
+                <a href="#" style="--i:3">Struttura</a>
             }
         </nav>
-        <button id="button">drop</button>
+        @*<button id="button">drop</button>*@
+        @if (User.Identity.IsAuthenticated)
+        {
+            <button id="button" class="button-64">
+                <span class="full-name">@Session["Utente"]</span>
+                <span class="initials" style="display: none;">@Session["Iniziali"]</span>
+            </button>
+        }
     </header>
 
     @RenderBody()
 
     <ul class="drop list" id="drop">
-        <li class="option" style="--i:5;">
+        <li class="option" style="--i:6;">
             <a href="@Url.Action("DatiPersonali", "Utente")">
                 <i class="fa-regular fa-user icon"></i>
-                <span class="option-text">Gestici account</span>
+                <span class="option-text">Gestisci account</span>
             </a>
         </li>
-        <li class="option" style="--i:4;">
+        <li class="option" style="--i:5;">
             <a href="@Url.Action("Storico", "Prenota")">
                 <i class="fa-regular fa-user icon"></i>
                 <span class="option-text">Prenotazioni e viaggi</span>
             </a>
         </li>
-        <li class="option" style="--i:3;">
+        <li class="option" style="--i:4;">
             <i class="fa-regular fa-user icon"></i>
             <span class="option-text">Premi e Wallet</span>
         </li>
-        <li class="option" style="--i:2;">
+        <li class="option" style="--i:3;">
             <i class="fa-regular fa-user icon"></i>
             <span class="option-text">Recensioni</span>
         </li>
-        <li class="option" style="--i:1;">
+        <li class="option" style="--i:2;">
             <a href="@Url.Action("Preferiti", "Preferiti")">
                 <i class="fa-regular fa-user icon"></i>
                 <span class="option-text">Preferiti</span>
             </a>
         </li>
+        <li class="option" style="--i:1;">
+            <a href="@Url.Action("Logout", "Home")">
+                <i class="fa-regular fa-user icon"></i>
+                <span class="option-text">Logout</span>
+            </a>
+        </li>
     </ul>
-
 
 
     <footer class="footer">
@@ -192,6 +201,7 @@
 
     <script src="~/Scripts/myScripts/dropdown.js"></script>
     <script src="~/Scripts/myScripts/modal.js"></script>
+    <script src="~/Scripts/myScripts/navButton.js"></script>
     <script src="https://kit.fontawesome.com/a7f72890b8.js" crossorigin="anonymous"></script>
 </body>
 </html>

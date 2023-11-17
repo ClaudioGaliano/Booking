@@ -20,7 +20,7 @@ namespace Booking.Controllers
 
         public ActionResult DettaglioStruttura(int id)
         {
-            var recensioni = db.Recensione.Where(c => c.IdStruttura == id);
+            var recensioni = db.Recensione.Where(c => c.IdStruttura == id).OrderByDescending(c => c.Data);
             double? mediaPunteggio = recensioni.Any() ? recensioni.Average(r => r.Punteggio) : 0;
 
             mediaPunteggio = Math.Round((double)mediaPunteggio, 1);

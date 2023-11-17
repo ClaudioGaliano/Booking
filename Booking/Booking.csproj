@@ -102,6 +102,12 @@
     <Reference Include="MimeKit, Version=4.2.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.4.2.0\lib\net48\MimeKit.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
@@ -260,6 +266,10 @@
     <Compile Include="Migrations\202311131406074_initialCreate.designer.cs">
       <DependentUpon>202311131406074_initialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311161417599_DataRecensione.cs" />
+    <Compile Include="Migrations\202311161417599_DataRecensione.designer.cs">
+      <DependentUpon>202311161417599_DataRecensione.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ModelDbContext\Camera.cs" />
     <Compile Include="Models\ModelDbContext\ModelDbContext.cs" />
@@ -307,6 +317,7 @@
     <Content Include="Content\img\pexels-asad-photo-maldives-15031960.jpg" />
     <Content Include="Content\img\pexels-tuur-tisseghem-2954412.jpg" />
     <Content Include="Content\img\pngtree-airplane-icon-vector-illustration-design-logo-template-png-image_5460137.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleSheet.css">
       <DependentUpon>StyleSheet.scss</DependentUpon>
     </Content>
@@ -348,6 +359,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\myScripts\dropdown.js" />
     <Content Include="Scripts\myScripts\modal.js" />
+    <Content Include="Scripts\myScripts\navButton.js" />
     <Content Include="Scripts\myScripts\preferiti.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -457,6 +469,9 @@
     <EmbeddedResource Include="Migrations\202311131406074_initialCreate.resx">
       <DependentUpon>202311131406074_initialCreate.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311161417599_DataRecensione.resx">
+      <DependentUpon>202311161417599_DataRecensione.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

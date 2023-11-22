@@ -26,11 +26,11 @@ namespace Booking.Controllers
         {
             if (Session["IdUtente"] != null && Int16.TryParse(Session["IdUtente"].ToString(), out short idUtente))
             {
-               var utente = db.Utente.Find(idUtente);
-               ViewBag.nomeUtente = utente.Nome;
-               ViewBag.cognomeUtente = utente.Cognome;
+                var utente = db.Utente.Find(idUtente);
+                ViewBag.nomeUtente = utente.Nome;
+                ViewBag.cognomeUtente = utente.Cognome;
             }
-            
+
             var camera = db.Camera.Find(id);
             return View(camera);
         }
@@ -81,82 +81,32 @@ namespace Booking.Controllers
                         db.Prenotazione.Add(prenotazione);
                         db.SaveChanges();
 
-                        try
-                        {
-                            Mail();
-                            TempData["Successo"] = "";
-                        }
-                        catch (Exception ex)
-                        {
-                            TempData["Errore"] = "Si è verificato un errore durante l'invio dell'email: " + ex.Message;
-                        }
+                        Session["IdPrenotazione"] = prenotazione.IdPrenotazione;
 
-                        return RedirectToAction("Index", "Home");
+                        //try
+                        //{
+                        //    EmailController.Mail(prenotazione.IdPrenotazione, db);
+                        //    TempData["Successo"] = "";
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    TempData["Errore"] = "Si è verificato un errore durante l'invio dell'email: " + ex.Message;
+                        //}
+
+                        return RedirectToAction("PaymentWithPaypal", "Paypal");
+                        //return RedirectToAction("Index", "Home");
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Riepilogo");
         }
 
-        public decimal calcolaTotale (int idCamera, DateTime dataInizio, DateTime dataFine)
+        public decimal calcolaTotale(int idCamera, DateTime dataInizio, DateTime dataFine)
         {
             Camera camera = db.Camera.Find(idCamera);
             int numeroNotti = (dataFine - dataInizio).Days;
             decimal totale = (numeroNotti * camera.Prezzo);
             return totale;
-        }
-
-        public void Mail()
-        {
-            //var utente = db.Utente.FirstOrDefault(x => x.Username == User.Identity.Name);
-            string senderEmail = ConfigurationManager.AppSettings["SmtpSenderEmail"];
-            string senderPassword = ConfigurationManager.AppSettings["SmtpSenderPassword"];
-
-            //setx NOME_VARIABILE "valore" promt dei comandi
-            //string miaVariabile = Environment.GetEnvironmentVariable("NOME_VARIABILE");
-
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential(senderEmail, senderPassword),
-                EnableSsl = true,
-            };
-
-            var mailMessage = new MailMessage()
-            {
-                From = new MailAddress(senderEmail, "Nome azienda"),
-                Subject = "Test",
-                Body = @"
-                <section class=""max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900"">
-                    <main class=""mt-8"">
-                        <h2 class=""text-gray-700 dark:text-gray-200"">Pacchetto pro</h2>
-
-                        <p class=""mt-2 leading-loose text-gray-600 dark:text-gray-300"">
-                            Hai appena ricevuto una richiesta per il pacchetto pro con il seguente testo:
-                        </p>
-
-                        <p class=""mt-2 leading-loose text-gray-600 dark:text-gray-300 italic"">
-                            " + @"
-                        </p>
-                    </main>
-                    <footer class=""mt-8"">
-                        <p class=""text-gray-500 dark:text-gray-400"">
-                            Questa email è stata inviata da " + @"
-                        </p>
-                        <p class=""mt-1 leading-loose text-gray-600 dark:text-gray-300"">
-                            Email: <a href="" + utente.Email + "" class=""text-blue-600 hover:underline dark:text-blue-400"" target=""_blank"">" + @"</a>.
-                        </p>
-                        <p class=""mt-1 leading-loose text-gray-600 dark:text-gray-300"">
-                            Telefono: " + @"
-                        </p>
-                        <p class=""mt-3 text-gray-500 dark:text-gray-400"">" + DateTime.Now + @"</p>
-                    </footer>
-                </section>",
-                IsBodyHtml = true,
-            };
-            mailMessage.To.Add("jude.braun83@ethereal.email");
-
-            smtpClient.Send(mailMessage);
         }
 
         public ActionResult EliminaPrenotazione(int id)

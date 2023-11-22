@@ -1,7 +1,11 @@
 ﻿
-@{
-    ViewBag.Title = "FailureView";
-}
-
-<h2>FailureView</h2>
-
+<section class="success_view">
+    <div class="failure_card">
+        <div class="check">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <h1>Pagamento fallito</h1>
+        <p>Il pagamento non è andato a buon fine;<br /> effettua nuovamente la procedura</p>
+        <div class="back_button mt-4">@Html.ActionLink("Torna alla home", "Index", "Home")</div>
+    </div>
+</section>

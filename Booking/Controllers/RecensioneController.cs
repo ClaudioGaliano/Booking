@@ -19,7 +19,7 @@ namespace Booking.Controllers
         }
 
         [HttpPost]
-        public ActionResult Recensione(int id, int punteggio, string commento)
+        public ActionResult Recensione(int id, int punteggio, string titolo, string commento)
         {
             short idUtente;
             bool isParsed = Int16.TryParse(Session["IdUtente"].ToString(), out idUtente);
@@ -29,8 +29,10 @@ namespace Booking.Controllers
                 Recensione recensione = new Recensione
                 {
                     Punteggio = punteggio,
+                    Titolo = titolo,
                     Commento = commento,
                     IdUtenteFk = idUtente,
+                    Data = DateTime.Today,
                     IdStruttura = id
 
                 };
@@ -41,7 +43,7 @@ namespace Booking.Controllers
                     db.SaveChanges();
                 }
             }
-            return RedirectToAction("Recensione");
+            return RedirectToAction("Storico", "Prenota");
         }
 
         public ActionResult Recensioni(int id, int? page)

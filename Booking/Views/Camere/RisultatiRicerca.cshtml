@@ -74,44 +74,42 @@
                             <div class="col-lg-3">
                                 <div class="img-container">
                                     <div class="hotel-label">
-                                        <a href="#">@strutturaPunteggi.Struttura.Nome</a>
+                                        <p>@strutturaPunteggi.Struttura.Nome</p>
                                     </div>
                                     <img src="~/Content/img/@strutturaPunteggi.Struttura.Immagine" alt="immagine non trovata" class="foto-struttura" />
                                 </div>
                             </div>
                             <div class="col-lg-8 info-container">
-                                <div class="aaa">
-                                    <div>
-                                        <div class="top">
-                                            <p class="prezzo"> 100$</p>
-                                            <div class="offer_reviews">
-                                                <div class="offer_reviews_content">
-                                                    <div class="offer_reviews_title">very good</div>
-                                                    <div class="offer_reviews_subtitle">@strutturaPunteggi.TotaleRecensioni recensioni</div>
-                                                </div>
-                                                <div class="offer_reviews_rating text-center">
-                                                    @if (strutturaPunteggi.MediaPunteggio > 0)
-                                                    {
-                                                        @strutturaPunteggi.MediaPunteggio.Value
-                                                    }
-                                                    else
-                                                    {
-                                                        @:-
-                                                    }
-                                                </div>
+                                <div>
+                                    <div class="top">
+                                        <p class="prezzo"> @strutturaPunteggi.Struttura.Nome</p>
+                                        <div class="offer_reviews">
+                                            <div class="offer_reviews_content">
+                                                <div class="offer_reviews_title">very good</div>
+                                                <div class="offer_reviews_subtitle">@strutturaPunteggi.TotaleRecensioni recensioni</div>
+                                            </div>
+                                            <div class="offer_reviews_rating text-center">
+                                                @if (strutturaPunteggi.MediaPunteggio > 0)
+                                                {
+                                                    @strutturaPunteggi.MediaPunteggio.Value
+                                                }
+                                                else
+                                                {
+                                                    @:-
+                                                }
                                             </div>
                                         </div>
-                                        <div class="rating_r rating_r_5 offers_rating" data-rating="5">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet.</p>
                                     </div>
-                                    <div class="button book_button">@Html.ActionLink("Prenota", "DettaglioStruttura", "Struttura", new { id = @strutturaPunteggi.Struttura.IdStruttura }, null)</div>
+                                    <div class="rating_r rating_r_5 offers_rating" data-rating="5">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet.</p>
                                 </div>
+                                <div class="button book_button">@Html.ActionLink("Dettagli", "DettaglioStruttura", "Struttura", new { id = @strutturaPunteggi.Struttura.IdStruttura }, null)</div>
                             </div>
                         </div>
                     }

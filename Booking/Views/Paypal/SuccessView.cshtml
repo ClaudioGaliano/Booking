@@ -1,7 +1,11 @@
 ﻿
-@{
-    ViewBag.Title = "SuccessView";
-}
-
-<h2>SuccessView</h2>
-
+<section class="success_view">
+    <div class="success_card">
+        <div class="check">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h1>Pagamento confermato</h1>
+        <p>Abbiamo ricevuto la tua richiesta;<br /> riceverai a breve una mail con i dati della prenotazione!</p>
+        <div class="back_button mt-4">@Html.ActionLink("Torna alla home", "Index", "Home")</div>
+    </div>
+</section>

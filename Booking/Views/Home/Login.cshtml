@@ -1,31 +1,122 @@
 ﻿@model Booking.Registrazione
 
-<section>
-    <h2 class="fw-bold">Login</h2>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div>
-                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-
-            <div>
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ", type = "password" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-            </div>
-
-            <div>
-                <div class="col-md-offset-2">
-                    <input type="submit" value="Login" class="btn btn-success mt-3 mb-3" />
+<section class="login_section">
+    <div class="login_container" id="login_container">
+        <div class="form-container sign-up-container">
+            @*Registrazione*@
+            <form action="~/Utente/Registrati" method="post" class="login_form">
+                @Html.AntiForgeryToken()
+                <h1 class="lg_title">Crea Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>oppure inserisci i tuoi dati per registrarti</span>
+                <input type="text" name="Nome" placeholder="Nome" class="login_input" />
+                <input type="text" name="Cognome" placeholder="Cognome" class="login_input" />
+                <input type="email" name="Email" placeholder="Email" class="login_input" />
+                <input type="text" name="Username" placeholder="Username" class="login_input" />
+                <input type="password" name="Password" placeholder="Password" class="login_input" />
+                <button class="lg_button mt-3">Registrati</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            @*Login*@
+            <form action="~/Home/Login" method="post" class="login_form">
+                @Html.AntiForgeryToken()
+                <h1 class="lg_title">Accedi</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>oppure usa il tuo account</span>
+                <input type="text" name="Username" placeholder="Username" class="login_input" />
+                <input type="password" name="Password" placeholder="Password" class="login_input" />
+                <a href="#">Password dimenticata?</a>
+                <button class="lg_button">Accedi</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay_login">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="lg_title">Bentornato!</h1>
+                    <p>Inserisci i tuoi dati e fai l'accesso</p>
+                    <button class="ghost lg_button" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1 class="lg_title">Benvenuto!</h1>
+                    <p>Inserisci i tuoi dati, un mondo di offerte ti aspetta</p>
+                    <button class="ghost lg_button" id="signUp">Registrati</button>
                 </div>
             </div>
         </div>
-    }
+    </div>
 </section>
+
+@*<section class="login_section">
+        <div class="login_container" id="login_container">
+            <div class="form-container sign-up-container">
+                Registrazione
+                <form action="~/Utente/Registrati" method="post" class="login_form">
+                    @Html.AntiForgeryToken()
+                    <h1 class="lg_title">Crea Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>oppure inserisci i tuoi dati per registrarti</span>
+                    <div class="d-flex">
+                        <input type="text" name="Nome" placeholder="Nome" class="login_input" />
+                        <input type="text" name="Cognome" placeholder="Cognome" class="login_input" />
+                    </div>
+
+                    <div class="d-flex">
+                        <input type="email" name="Email" placeholder="Email" class="login_input" />
+                        <input type="text" name="Username" placeholder="Username" class="login_input" />
+                    </div>
+
+                    <input type="password" name="Password" placeholder="Password" class="login_input" />
+                    <button class="lg_button mt-3">Registrati</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay_login">
+                    <div class="overlay-panel overlay-right">
+                        <h1 class="lg_title">Benvenuto!</h1>
+                        <p>Inserisci i tuoi dati, un mondo di offerte ti aspetta</p>
+                        <button class="ghost lg_button" id="signUp">Registrati</button>
+                    </div>
+                    <div class="overlay-panel overlay-left">
+                        <h1 class="lg_title">Bentornato!</h1>
+                        <p>Inserisci i tuoi dati e fai l'accesso</p>
+                        <button class="ghost lg_button" id="signIn">Sign In</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-container sign-in-container">
+                Login
+                <form action="~/Home/Login" method="post" class="login_form">
+                    @Html.AntiForgeryToken()
+                    <h1 class="lg_title">Accedi</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>oppure usa il tuo account</span>
+                    <input type="text" name="Username" placeholder="Username" class="login_input" />
+                    <input type="password" name="Password" placeholder="Password" class="login_input" />
+                    <a href="#">Password dimenticata?</a>
+                    <button class="lg_button">Accedi</button>
+                </form>
+            </div>
+        </div>
+    </section>*@
+
+
+@section Scripts {
+    <script src="~/Scripts/myScripts/login.js"></script>
+}

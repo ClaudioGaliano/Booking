@@ -1,17 +1,24 @@
 ﻿using Booking.Models;
+using System.Data.Entity;
 using Org.BouncyCastle.Asn1.Ocsp;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace Booking.Controllers
 {
     public class PaypalController : Controller
     {
+        ModelDbContext db = new ModelDbContext();
+
         public ActionResult PaymentWithPaypal(string Cancel = null)
         {
             //getting the apiContext
@@ -70,6 +77,16 @@ namespace Booking.Controllers
                 return View("FailureView");
             }
             //on successful payment, show success page to user.
+            try
+            {
+                int idPrenotazione = (int)Session["IdPrenotazione"];
+                EmailController.Mail(idPrenotazione, db);
+                TempData["Successo"] = "";
+            }
+            catch (Exception ex)
+            {
+                TempData["Errore"] = "Si è verificato un errore durante l'invio dell'email: " + ex.Message;
+            }
             return View("SuccessView");
         }
         private PayPal.Api.Payment payment;
@@ -88,6 +105,9 @@ namespace Booking.Controllers
         
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
+            int idPrenotazione = (int)Session["IdPrenotazione"];
+            Prenotazione prenotazione = db.Prenotazione.Find(idPrenotazione);
+
             //create itemlist and add item objects to it
             var itemList = new ItemList()
             {
@@ -96,11 +116,16 @@ namespace Booking.Controllers
             //Adding Item Details like name, currency, price etc
             itemList.items.Add(new Item()
             {
-                name = "Item Name comes here",
+                //name = "Item Name comes here",
+                //currency = "EUR",
+                //price = "1",
+                //quantity = "1",
+                //sku = "sku",
+                name = "Prenotazione",
                 currency = "EUR",
-                price = "1",
+                price = prenotazione.Totale.ToString("0.00", CultureInfo.InvariantCulture),
                 quantity = "1",
-                sku = "sku",
+                sku = prenotazione.IdPrenotazione.ToString(),
             });
             var payer = new Payer()
             {
@@ -123,14 +148,16 @@ namespace Booking.Controllers
             var amount = new Amount()
             {
                 currency = "EUR",
-                total = "1", //Total must be equal to sum of tax, shipping and subtotal
+                total = prenotazione.Totale.ToString("0.00", CultureInfo.InvariantCulture),
+                //total = "1",
+                //Total must be equal to sum of tax, shipping and subtotal
                 //details = details
             };
             var transactionList = new List<Transaction>();
             // Adding description about the transaction
             transactionList.Add(new Transaction()
             {
-                description = "Transactio description",
+                description = "Transaction description",
                 invoice_number = Guid.NewGuid().ToString(), //Generate an Invoice number
                 amount = amount,
                 item_list = itemList

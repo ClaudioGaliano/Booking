@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    <title>@ViewBag.Title - Travel</title>
     <link href="~/Content/StyleSheet.css" rel="stylesheet" />
-    <link href="https:cdnjs.cloudflare.com/ajax/libs/mayer-reset/2.0/reset.min.css" rel="stylesheet" />
+    @*<link href="https:cdnjs.cloudflare.com/ajax/libs/mayer-reset/2.0/reset.min.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,20 +23,20 @@
             <i class="fa-solid fa-xmark" id="close-icon"></i>
         </label>
         <nav class="my-navbar">
-            <a href="@Url.Action("Index", "Home")" style="--i:0">Home</a>
+            <a href="@Url.Action("Index", "Home")" style="--i:0" class="nav_link">Home</a>
             @*<a href="@Url.Action("Registrati", "Utente")" style="--i:1">Registrati</a>*@
-            <a href="#" style="--i:1">Notifiche</a>
-            <a href="#" style="--i:2">Assistenza</a>
+            <a href="#" style="--i:1" class="nav_link">About</a>
+            <a href="#" style="--i:2" class="nav_link">Assistenza</a>
 
             @if (!User.Identity.IsAuthenticated)
             {
-                <a href="@Url.Action("Login", "Home")" style="--i:3">Accedi</a>
+                <a href="@Url.Action("Login", "Home")" style="--i:3" class="nav_link">Accedi</a>
             }
             else
             {
                 @*<a href="@Url.Action("Login", "Home")" style="--i:3">@((Session["Utente"] != null) ? Session["Utente"] : "Login")</a>*@
                 @*<a href="#" style="--i:3">@Session["Utente"]</a>*@
-                <a href="#" style="--i:3">Struttura</a>
+                <a href="#" style="--i:3" class="nav_link">Struttura</a>
             }
         </nav>
         @*<button id="button">drop</button>*@
@@ -60,27 +60,27 @@
         </li>
         <li class="option" style="--i:5;">
             <a href="@Url.Action("Storico", "Prenota")">
-                <i class="fa-regular fa-user icon"></i>
+                <i class="fa-solid fa-earth-americas"></i>
                 <span class="option-text">Prenotazioni e viaggi</span>
             </a>
         </li>
         <li class="option" style="--i:4;">
-            <i class="fa-regular fa-user icon"></i>
+            <i class="fa-solid fa-wallet"></i>
             <span class="option-text">Premi e Wallet</span>
         </li>
         <li class="option" style="--i:3;">
-            <i class="fa-regular fa-user icon"></i>
+            <i class="fa-regular fa-comment"></i>
             <span class="option-text">Recensioni</span>
         </li>
         <li class="option" style="--i:2;">
             <a href="@Url.Action("Preferiti", "Preferiti")">
-                <i class="fa-regular fa-user icon"></i>
+                <i class="fa-regular fa-heart"></i>
                 <span class="option-text">Preferiti</span>
             </a>
         </li>
         <li class="option" style="--i:1;">
             <a href="@Url.Action("Logout", "Home")">
-                <i class="fa-regular fa-user icon"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="option-text">Logout</span>
             </a>
         </li>
@@ -92,7 +92,7 @@
             <div class="row">
 
                 <div class="col-lg-3 footer_column">
-                    <div class="footer_col">
+                    <div class="footer_col" style="height: 95%">
                         <div class="footer_content footer_about">
                             <div class="d-flex align-items-end">
                                 <img src="~/Content/img/logo.png" alt="" style="height: 60px;">
@@ -118,7 +118,7 @@
                             <div class="footer_blog_item clearfix">
                                 <div class="footer_blog_image"><img src="~/Content/img/Cover.PNG" alt="#"></div>
                                 <div class="footer_blog_content">
-                                    <div class="footer_blog_title"><a href="blog.html">Travel with us this year</a></div>
+                                    <div class="footer_blog_title"><a href="#">Travel with us this year</a></div>
                                     <div class="footer_blog_date">Nov 29, 2017</div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                             <div class="footer_blog_item clearfix">
                                 <div class="footer_blog_image"><img src="~/Content/img/Cover.PNG" alt="#"></div>
                                 <div class="footer_blog_content">
-                                    <div class="footer_blog_title"><a href="blog.html">New destinations for you</a></div>
+                                    <div class="footer_blog_title"><a href="#">New destinations for you</a></div>
                                     <div class="footer_blog_date">Nov 29, 2017</div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                             <div class="footer_blog_item clearfix">
                                 <div class="footer_blog_image"><img src="~/Content/img/Cover.PNG" alt="#"></div>
                                 <div class="footer_blog_content">
-                                    <div class="footer_blog_title"><a href="blog.html">Travel with us this year</a></div>
+                                    <div class="footer_blog_title"><a href="#">Travel with us this year</a></div>
                                     <div class="footer_blog_date">Nov 29, 2017</div>
                                 </div>
                             </div>
@@ -175,11 +175,11 @@
                                 </li>
                                 <li class="contact_info_item d-flex flex-row">
                                     <div><div class="contact_info_icon"><img src="~/Content/img/Icons/wifi.png" alt=""></div></div>
-                                    <div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
+                                    <div class="contact_info_text"><a href="#" target="_top">contactme@gmail.com</a></div>
                                 </li>
                                 <li class="contact_info_item d-flex flex-row">
                                     <div><div class="contact_info_icon"><img src="~/Content/img/Icons/wifi.png" alt=""></div></div>
-                                    <div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
+                                    <div class="contact_info_text"><a href="#">www.travel.com</a></div>
                                 </li>
                             </ul>
                         </div>

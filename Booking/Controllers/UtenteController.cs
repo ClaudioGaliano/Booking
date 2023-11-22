@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Booking.Controllers
 {
@@ -43,12 +44,18 @@ namespace Booking.Controllers
                 db.Utente.Add(user);
                 await db.SaveChangesAsync();
 
-                // User created successfully, redirect to login page, etc.
+                // User created successfully, now log in the user
+                Session["IdUtente"] = user.IdUtente;
+                Session["Ruolo"] = user.Ruolo;
+                Session["Utente"] = user.Nome + " " + user.Cognome;
+                Session["Iniziali"] = user.Nome.Substring(0, 1) + user.Cognome.Substring(0, 1);
+                FormsAuthentication.SetAuthCookie(user.Username, true);
+
                 return RedirectToAction("Index", "Home");
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            // Something failed, redisplay form
+            return RedirectToAction("Login", "Home");
         }
 
         public ActionResult DatiPersonali()

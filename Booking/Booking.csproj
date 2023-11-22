@@ -311,12 +311,21 @@
     <None Include="Content\StyleSheet.scss" />
     <Content Include="Content\img\Cover.PNG" />
     <Content Include="Content\img\Cover2.PNG" />
+    <Content Include="Content\img\Doria.jpg" />
+    <Content Include="Content\img\Doria_camera.jpg" />
+    <Content Include="Content\img\Doria_camera2.jpg" />
+    <Content Include="Content\img\Folen.jpg" />
     <Content Include="Content\img\Icons\air-conditioning.png" />
     <Content Include="Content\img\Icons\wifi.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\pexels-aleksandar-pasaric-1285625.jpg" />
+    <Content Include="Content\img\pexels-aleksandar-pasaric-2506923.jpg" />
     <Content Include="Content\img\pexels-asad-photo-maldives-15031960.jpg" />
+    <Content Include="Content\img\pexels-rachel-claire-4825701.jpg" />
     <Content Include="Content\img\pexels-tuur-tisseghem-2954412.jpg" />
     <Content Include="Content\img\pngtree-airplane-icon-vector-illustration-design-logo-template-png-image_5460137.png" />
+    <Content Include="Content\img\user1.jpg" />
+    <Content Include="Content\img\user2.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleSheet.css">
       <DependentUpon>StyleSheet.scss</DependentUpon>
@@ -358,6 +367,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\myScripts\dropdown.js" />
+    <Content Include="Scripts\myScripts\login.js" />
     <Content Include="Scripts\myScripts\modal.js" />
     <Content Include="Scripts\myScripts\navButton.js" />
     <Content Include="Scripts\myScripts\preferiti.js" />

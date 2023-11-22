@@ -90,7 +90,7 @@
                                 <div class="room">
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
-                                            <div class="room_image"><img src="~/Content/img/Cover.PNG" alt="img"></div>
+                                            <div class="room_image"><img src="~/Content/img/@camera.Immagine" alt="img"></div>
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="room_content">
@@ -100,13 +100,12 @@
                                                     <ul class="offers_icons_list">
                                                         @foreach (var servizio in camera.Servizi)
                                                         {
-                                                            @*<li class="offers_icons_item"><img src="images/post.png" alt=""></li>*@
-                                                            <li class="offers_icons_item">@servizio.TipoServizio</li>
+                                                            <li class="offers_icons_item"><img src="~/Content/img/Icons/@servizio.Icona" alt="icon"></li>
                                                         }
                                                     </ul>
                                                 </div>
-                                                <div class="room_text">FREE cancellation before 23:59 on 20 December 2017</div>
-                                                <div class="room_extra">Breakfast $7.50</div>
+                                                @*<div class="room_text">FREE cancellation before 23:59 on 20 December 2017</div>
+                                                <div class="room_extra">Breakfast $7.50</div>*@
                                             </div>
                                         </div>
                                         <div class="col-lg-3 text-lg-right">
@@ -122,12 +121,12 @@
                     <div class="reviews">
                         <h3 class="reviews_title">Recensioni</h3>
                         <div class="reviews_container">
-                            @foreach (Recensione recensione in Model.Recensione.Take(3))
+                            @foreach (Recensione recensione in Model.Recensione.OrderByDescending(r => r.Data).Take(3))
                             {
                                 <div class="review row mt-4">
                                     <div class="col-lg-1">
                                         <div class="review_image">
-                                            <img src="~/Content/img/Cover.PNG" alt="" />
+                                            <img src="~/Content/img/user1.jpg" alt="" />
                                         </div>
                                     </div>
                                     <div class="col-lg-11">
